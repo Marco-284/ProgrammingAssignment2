@@ -3,7 +3,7 @@
 
 ## Write a short comment describing this function
 ##makeCacheMatrix do have set, get, setInverse, getInverse
-
+##Utilize the function that sets the matrix and its inverse in an environment
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
   set <- function(y) {
@@ -11,8 +11,8 @@ makeCacheMatrix <- function(x = matrix()) {
     inv <<- NULL
   }
   get <- function()x
-  setInverse <- function(inverse){inv <<- inverse}
-  getInverse <- function(){inv}
+  setInverse <- function(inverse) inv <<- inverse
+  getInverse <- function() inv
   list(set = set, get = get,
        setInverse = setInverse,
        getInverse = getInverse)
@@ -29,8 +29,8 @@ cacheSolve <- function(x, ...) {
     message("getting cached data")
     return(inv)
   }
-  mat <- x$get()
-  inv <- solve(mat, ...)
+  data <- x$get()
+  inv <- solve(data, ...)
   x$setInverse(inv)
   inv
   
